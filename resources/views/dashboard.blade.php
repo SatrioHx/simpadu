@@ -2,6 +2,5 @@
 
 @section('content')
 
-radit jawa hama
 @endsection
 
