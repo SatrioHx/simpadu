@@ -12,8 +12,8 @@
               <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item active" aria-current="page">Data Mahasiswa</li>
-                  <li class="breadcrumb-item"><a href="/prodi">Program Studi</a></li>
+                  <li class="breadcrumb-item"><a href="{{ url('mahasiswa') }}">Mahasiswa</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Program Studi</li>
                 </ol>
               </div>
             </div>
@@ -30,9 +30,9 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">Data Mahasiswa</h3>
+                  <div class="card-header"><h3 class="card-title">Data Prodi</h3>
                     <div class="card-tools">
-                    <a href="mahasiswa/create" class="btn btn-primary">Tambah</a>
+                    <a href="prodi/create" class="btn btn-primary">Tambah</a>
                     </div>
                   </div>
                   <!-- /.card-header -->
@@ -41,34 +41,28 @@
                       <thead>
                         <tr>
                             <th>No</th>
-                            <th>NIM</th>
                             <th>Nama</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Nomor Telepon</th>
-                            <th>Email</th>
-                            <th>Prodi</th>
+                            <th>Kaprodi</th>
+                            <th>Jurusan</th>
                             <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach($mahasiswa as $s)
+                        @foreach($prodi as $s)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $s->nim }}</td>
                             <td>{{ $s->nama }}</td>
-                            <td>{{ $s->tgl_lahir }}</td>
-                            <td>{{ $s->no_telp }}</td>
-                            <td>{{ $s->email }}</td>
-                            <td>{{ $s->prodi->nama }}</td>
+                            <td>{{ $s->kaprodi }}</td>
+                            <td>{{ $s->jurusan }}</td>
                             <td>
-                            <form action="{{ url("mahasiswa/$s->nim") }}" method="post"
+                            <form action="{{ url("prodi/$s->id") }}" method="post"
                               class="d-inline">
                               @method('delete')
                               @csrf
                               <button type="submit" class="btn btn-danger"
                               onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
                             </form>
-                            <a href="{{ url("mahasiswa/$s->nim/edit") }}"
+                            <a href="{{ url("prodi/$s->id/edit") }}"
                             class="btn btn-warning">Edit</a></td>
                         </tr>
                         @endforeach
